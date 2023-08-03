@@ -82,16 +82,15 @@ class $className {
 
 fun main() {
     // Пример использования
-    val storyContent = """
-        Given some preconditions with <temp> and <account> with: 
-        |adsf|asdf|asdf|
-        |1312|432 |3423|
-        And some additional conditions with <salary>
-        And another some additional conditions with <salary>
-        When some actions with <id>
-        Then some outcomes with <uiid> and <hz>
-    """.trimIndent()
+    println("Enter the story content (press Enter twice to finish):")
 
+    val inputLines = mutableListOf<String>()
+    var line = readlnOrNull()
+    while (!line.isNullOrEmpty()) {
+        inputLines.add(line)
+        line = readlnOrNull()
+    }
+    val storyContent = inputLines.joinToString("\n")
     val generatedStub = generateClass(className = "TestClass", storyContent)
     println(generatedStub)
 }
